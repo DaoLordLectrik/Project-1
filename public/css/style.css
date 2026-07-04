@@ -33,7 +33,7 @@ header {
 .logo {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--primary-dark);
+  color: var(--white);
 }
 
 nav ul {
