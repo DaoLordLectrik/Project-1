@@ -1,4 +1,4 @@
-# Project 1 — Community Connect
+# Project 1 - Community Connect
 
 This project is coursework for **CSE340: Web Backend Development**. It is a server-side-rendered web application built with Node.js, Express, and EJS, focused on connecting volunteers with local organizations, service projects, and categories of community service.
 
