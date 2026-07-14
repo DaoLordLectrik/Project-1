@@ -5,10 +5,14 @@ import path from 'path';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));
 
 app.get('/', async (req, res) => {
