@@ -2,8 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { testConnection } from './public/src/models/db.js';
-import { getAllOrganizations } from './public/src/models/organizations.js';
+import { testConnection } from './src/models/db.js';
+import { getAllOrganizations } from './src/models/organizations.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
