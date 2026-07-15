@@ -1,8 +1,8 @@
 :root {
-  --primary: #2c5f2d;
-  --primary-dark: #1e401f;
+  --primary: lightblue;
+  --primary-dark: #06212b;
   --accent: #f2a541;
-  --bg: #f9f9f7;
+  --bg: lightblue;
   --text: #222222;
   --white: #ffffff;
 }
@@ -13,46 +13,54 @@
   padding: 0;
 }
 
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg);
+  font-family: Arial, sans-serif;
+  background-color: lightblue;
   color: var(--text);
   line-height: 1.6;
+  margin: 0;
+  padding: 20px;
 }
-
 header {
-  background-color: var(--primary);
+  background-color: var(--white);
   color: var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 8px;
   padding: 1rem 2rem;
   flex-wrap: wrap;
 }
 
-.logo {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--white);
+.main-logo {
+  width: 150px;
+  height: auto;
 }
 
 nav ul {
+  list-style-type: none;
+  padding: 0;
   display: flex;
-  list-style: none;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
 
+
+nav li {
+  display: inline;
+  margin-right: 15px;
+}
+
 nav a {
-  color: var(--white);
   text-decoration: none;
-  font-weight: 500;
+  color: #333;
+  font-weight: bold;
 }
 
 nav a:hover,
 nav a:focus {
-  text-decoration: underline;
-  color: var(--accent);
+  color: #0066cc;
 }
 
 main {
@@ -62,7 +70,10 @@ main {
 }
 
 .hero {
-  text-align: center;
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: left;
   padding: 3rem 1rem;
 }
 
@@ -86,8 +97,20 @@ h1 {
 }
 
 .card img {
-  width: 100px;
+  width: 50px;
   border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.home-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.home-card img {
+  width: 40%;
   margin-bottom: 1rem;
 }
 
@@ -110,6 +133,7 @@ footer {
   background-color: var(--primary-dark);
   color: var(--white);
   margin-top: 3rem;
+  border-radius: 4px;
 }
 
 @media (max-width: 600px) {
