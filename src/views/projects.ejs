@@ -2,11 +2,22 @@
 
 <section class="hero">
   <h1><%= pageTitle %></h1>
-  <ul>
+
+    <% projects.forEach(project => { %>
+      <div class="card">
+        <p>
+          <%= new Date(project.project_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>:
+          <strong><%= project.title %></strong> (<%= project.organization_name %>)
+        </p>
+      </div>
+    <% }); %>
+
+  <!-- <ul>
     <li>Park Cleanup - Join us to clean up local parks and make them beautiful!</li>
     <li>Food Drive - Help collect and distribute food to those in need.</li>
     <li>Community Tutoring - Volunteer to tutor students in various subjects.</li>
-  </ul>
+  </ul> -->
+
 </section>
 
 <%- include('partials/footer') %>
