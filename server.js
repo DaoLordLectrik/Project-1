@@ -3,8 +3,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
-import { getAllOrganizations } from './src/models/organizations.js';
-import { getAllProjects } from './src/models/projects.js';
+import router from './src/routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,38 +15,54 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));
 
-app.get('/', async (req, res) => {
-  const pageTitle = 'Home';
-  res.render('home', { pageTitle });
+// Middleware to log all incoming requests
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`${req.method} ${req.url}`);
+  }
+  next();
 });
 
-app.get('/organizations', async (req, res) => {
-  const organizations = await getAllOrganizations();
-  const pageTitle = 'Organizations';
-  res.render('organizations', { pageTitle, organizations });
+// Middleware to make NODE_ENV available to all templates
+app.use((req, res, next) => {
+  res.locals.NODE_ENV = process.env.NODE_ENV;
+  next();
 });
 
-app.get('/categories', async (req, res) => {
-  const pageTitle = 'Categories';
-  res.render('categories', { pageTitle });
+// Use the imported router to handle routes
+app.use(router);
+
+// Catch-all route for 404 errors
+app.use((req, res, next) => {
+  const err = new Error('Page Not Found');
+  err.status = 404;
+  next(err);
 });
 
-app.get('/projects', async (req, res) => {
-  const projects = await getAllProjects();
-  console.log(projects);
-  const pageTitle = 'Service Projects';
-  res.render('projects', { pageTitle, projects });
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Error occurred:', err.message);
+  console.error('Stack trace:', err.stack);
+
+  const status = err.status || 500;
+  const template = status === 404 ? '404' : '500';
+
+  const context = {
+    pageTitle: status === 404 ? 'Page Not Found' : 'Server Error',
+    error: err.message,
+    stack: err.stack,
+  };
+
+  res.status(status).render(`errors/${template}`, context);
 });
 
 app.listen(port, async () => {
-
-    try {
-        await testConnection();
-        console.log(`Server is running at http://127.0.0.1:${process.env.PORT}`);
-        console.log(`Environment: ${process.env.NODE_ENV}`);
-    }   catch (error) {
-        console.error('Failed to connect to the database:', error.message);
-        process.exit(1); // Exit the process with an error code
-    }
-
+  try {
+    await testConnection();
+    console.log(`Server is running at http://127.0.0.1:${process.env.PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+  } catch (error) {
+    console.error('Failed to connect to the database:', error.message);
+    process.exit(1);
+  }
 });
