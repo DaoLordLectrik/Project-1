@@ -1,13 +1,11 @@
 <%- include('partials/header') %>
-
-<section class="hero">
+<main>
   <h1><%= pageTitle %></h1>
-  <ul class="category-list">
-    <li>Environmental</li>
-    <li>Educational</li>
-    <li>Community Service</li>
-    <li>Health and Wellness</li>
-  </ul>
-</section>
 
+  <ul class="category-list">
+    <% categories.forEach(category => { %>
+      <li><a href="/category/<%= category.category_id %>"><%= category.category_name %></a></li>
+    <% }); %>
+  </ul>
+</main>
 <%- include('partials/footer') %>

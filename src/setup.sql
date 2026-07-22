@@ -83,3 +83,23 @@ INSERT INTO projects (organization_id, title, description, location, project_dat
   (3, 'Mental Health Awareness Walk', 'A community walk to raise awareness about mental health resources.', 'Tema Beach Road', '2026-04-22'),
   (3, 'Blood Donation Drive', 'Partnering with local hospitals to collect blood donations.', 'UnityServe Hall', '2026-05-08'),
   (3, 'Nutrition Workshop', 'Teaching healthy eating habits on a budget.', 'UnityServe Kitchen', '2026-05-24');
+
+-- ========================================
+-- Insert sample data: Project Categories
+-- ========================================
+INSERT INTO project_categories (project_id, category_id) VALUES
+  (1, 1), (1, 3),
+  (2, 2),
+  (3, 3),
+  (4, 3), (4, 2),
+  (5, 1),
+  (6, 1),
+  (7, 1), (7, 2),
+  (8, 1),
+  (9, 1),
+  (10, 1),
+  (11, 4),
+  (12, 3), (12, 4),
+  (13, 4),
+  (14, 4), (14, 3),
+  (15, 4), (15, 2);
