@@ -8,7 +8,7 @@
     <div class="card">
       <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo">
       <div class="card-text">
-        <h2><a href="/organizations/<%= organization.organization_id %>"><%= organization.name %></a></h2>
+        <h2><a href="/organization/<%= organization.organization_id %>"><%= organization.name %></a></h2>
         <p><%= organization.description %></p>
         <p>Contact: <a href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a></p>
       </div>
